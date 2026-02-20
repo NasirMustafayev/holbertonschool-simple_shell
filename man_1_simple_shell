@@ -1,0 +1,7 @@
+.TH HSH 1 "April 2024" "1.0" "hsh Manual"
+.SH NAME
+hsh \- simple command line interpreter
+.SH SYNOPSIS
+.B hsh
+.SH DESCRIPTION
+hsh is a simple command line interpreter...
