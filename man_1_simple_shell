@@ -1,7 +1,13 @@
-.TH HSH 1 "April 2024" "1.0" "hsh Manual"
+.TH HSH 1 "February 2026" "1.0" "Simple Shell Manual"
 .SH NAME
 hsh \- simple command line interpreter
 .SH SYNOPSIS
 .B hsh
 .SH DESCRIPTION
-hsh is a simple command line interpreter...
+.B hsh
+is a simple UNIX command line interpreter that reads commands from standard input and executes them.
+.SH USAGE
+Interactive mode: Run ./hsh and type commands
+Non-interactive mode: echo "command" | ./hsh
+.SH AUTHOR
+Written by Nasir Mustafayev
