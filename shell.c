@@ -12,6 +12,7 @@ int main(void)
     ssize_t readline;
     pid_t pid;
     char *args[2];
+    char *cmd;
 
     inputline = NULL;
     lenght = 0;
@@ -23,7 +24,6 @@ int main(void)
 
 
         readline = getline(&inputline, &lenght, stdin);
-
         
         if (readline == -1)
             break;
@@ -32,7 +32,21 @@ int main(void)
             continue;
 
         inputline[readline - 1] = '\0';
+        
+        while (readline > 1 && 
+               (inputline[readline - 2] == ' ' || 
+                inputline[readline - 2] == '\t'))
+        {
+            readline--;
+            inputline[readline - 1] = '\0';
+        }
 
+        cmd = inputline;
+        while (*cmd == ' ' || *cmd == '\t')
+            cmd++;
+
+        if (*cmd == '\0')
+            continue;
         if (inputline[0] == '\0')
 		    continue;
 
