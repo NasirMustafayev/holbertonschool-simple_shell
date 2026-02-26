@@ -13,7 +13,6 @@ int main(void)
     pid_t pid;
     char *args[2];
     char *cmd;
-
     inputline = NULL;
     lenght = 0;
 
@@ -21,7 +20,6 @@ int main(void)
     {
        	if (isatty(STDIN_FILENO))
 		    printf("$ ");
-
 
         readline = getline(&inputline, &lenght, stdin);
         
@@ -32,7 +30,6 @@ int main(void)
             continue;
 
         inputline[readline - 1] = '\0';
-        
         while (readline > 1 && 
                (inputline[readline - 2] == ' ' || 
                 inputline[readline - 2] == '\t'))
@@ -42,22 +39,21 @@ int main(void)
         }
 
         cmd = inputline;
+
         while (*cmd == ' ' || *cmd == '\t')
             cmd++;
 
         if (*cmd == '\0')
             continue;
-        if (inputline[0] == '\0')
-		    continue;
 
         pid = fork();
 
         if (pid == 0)
         {
-            args[0] = inputline;
+            args[0] = cmd;
             args[1] = NULL;
 
-            execve(inputline, args,  environ);
+            execve(cmd, args,  environ);
 
             perror("./shell");
             exit(1);
