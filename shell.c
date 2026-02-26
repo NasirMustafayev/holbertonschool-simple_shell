@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include <sys/wait.h>
 
 extern char **environ;
 
 int main(int argc, char *argv[])
 {
-    char *inputline;
+    char *inputline, *cmd, *token, *tokens[64];
     size_t lenght;
     ssize_t readline;
     pid_t pid;
-    char *args[2];
-    char *cmd;
+    int i;
 
     inputline = NULL;
     lenght = 0;
@@ -49,15 +49,23 @@ int main(int argc, char *argv[])
 
         if (*cmd == '\0')
             continue;
+        
+        i = 0;
+        token = strtok(cmd, " \t");
+
+        while (token != NULL && i <63)
+        {
+            tokens[i] = token;
+            i++;
+            token = strtok(NULL, " \t");
+        }
+        tokens[i] = NULL;
 
         pid = fork();
 
         if (pid == 0)
         {
-            args[0] = cmd;
-            args[1] = NULL;
-
-            execve(cmd, args,  environ);
+            execve(tokens[0], tokens,  environ);
 
             perror(argv[0]);
             exit(1);
@@ -68,7 +76,7 @@ int main(int argc, char *argv[])
         }
         else
         {
-            perror("fork");
+            perror(argv[0]);
         }
 
     }
