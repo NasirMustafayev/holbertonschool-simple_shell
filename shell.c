@@ -17,6 +17,8 @@ int main(int argc, char *argv[])
     inputline = NULL;
     lenght = 0;
 
+    (void)argc;
+
     while(1)
     {
        	if (isatty(STDIN_FILENO))
