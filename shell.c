@@ -5,7 +5,7 @@
 
 extern char **environ;
 
-int main(void)
+int main(int argc, char *argv[])
 {
     char *inputline;
     size_t lenght;
@@ -13,6 +13,7 @@ int main(void)
     pid_t pid;
     char *args[2];
     char *cmd;
+
     inputline = NULL;
     lenght = 0;
 
@@ -22,7 +23,7 @@ int main(void)
 		    printf("$ ");
 
         readline = getline(&inputline, &lenght, stdin);
-        
+
         if (readline == -1)
             break;
 
@@ -30,6 +31,7 @@ int main(void)
             continue;
 
         inputline[readline - 1] = '\0';
+
         while (readline > 1 && 
                (inputline[readline - 2] == ' ' || 
                 inputline[readline - 2] == '\t'))
@@ -55,7 +57,7 @@ int main(void)
 
             execve(cmd, args,  environ);
 
-            perror("./shell");
+            perror(argv[0]);
             exit(1);
         }
         else if (pid > 0)
