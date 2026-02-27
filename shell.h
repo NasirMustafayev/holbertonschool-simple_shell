@@ -15,5 +15,6 @@ ssize_t read_line(char **lineptr, size_t *n);
 char *trim_line(char *inputline, ssize_t *readline);
 int parse_tokens(char *cmd, char **tokens);
 void execute_cmd(char **tokens, char **argv);
+char *find_in_path(char *command);
 
 #endif
