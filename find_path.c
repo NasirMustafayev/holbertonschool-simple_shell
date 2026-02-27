@@ -5,6 +5,30 @@
  *
  * Return: full path if found, NULL if not found
  */
+ /**
+ * get_path_from_environ - gets PATH from environ
+ *
+ * Return: PATH value or NULL
+ */
+char *get_path_from_environ(void)
+{
+	int i;
+	char *path;
+
+	if (!environ)
+		return (NULL);
+
+	for (i = 0; environ[i] != NULL; i++)
+	{
+		if (strncmp(environ[i], "PATH=", 5) == 0)
+		{
+			path = environ[i] + 5;  /* Skip "PATH=" */
+			return (path);
+		}
+	}
+
+	return (NULL);
+}
 char *find_in_path(char *command)
 {
 	char *path, *path_copy, *dir;
@@ -18,7 +42,7 @@ char *find_in_path(char *command)
 		return (command);
 
 	/* Get the PATH */
-	path = getenv("PATH");
+	path = get_path_from_environ();
 	if (!path)
 		return (NULL);
 
