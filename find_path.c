@@ -30,13 +30,13 @@ char *find_in_path(char *command)
 	while (dir)
 	{
 		sprintf(full_path, "%s/%s", dir, command);
-		
+
 		if (access(full_path, X_OK) == 0)
 		{
 			free(path_copy);
 			return (full_path);
 		}
-		
+
 		dir = strtok(NULL, ":");
 	}
 

@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * main - entry point for simple shell
  * @argc: argument count
@@ -23,7 +22,6 @@ int main(int argc, char **argv)
 		display_prompt();
 
 		readline = read_line(&inputline, &lenght);
-		
 		if (readline == -1)
 			break;
 
