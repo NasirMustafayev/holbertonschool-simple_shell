@@ -23,16 +23,7 @@ int main(int argc, char **argv)
 		display_prompt();
 
 		readline = read_line(&inputline, &lenght);
-
-		if(strchr(tokens[0], '/') == NULL)
-		{
-
-		}
-		else
-		{
-
-		}
-
+		
 		if (readline == -1)
 			break;
 
