@@ -8,14 +8,13 @@
  */
 int main(int argc, char **argv)
 {
-	char *inputline, *cmd, *tokens[64], *path;
+	char *inputline, *cmd, *tokens[64];
 	size_t lenght;
 	ssize_t readline;
 
 	(void)argc;
 	inputline = NULL;
 	lenght = 0;
-	path = getenv("PATH");
 
 	while (1)
 	{
