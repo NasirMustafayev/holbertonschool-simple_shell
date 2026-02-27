@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 
 extern char **environ;
+extern int last_status;
 
 void display_prompt(void);
 ssize_t read_line(char **lineptr, size_t *n);

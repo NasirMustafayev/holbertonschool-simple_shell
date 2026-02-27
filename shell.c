@@ -6,6 +6,8 @@
  *
  * Return: 0 on success
  */
+int last_status = 0;  /* Global variable to store last command's exit status */
+
 int main(int argc, char **argv)
 {
 	char *inputline, *cmd, *tokens[64];
@@ -37,5 +39,5 @@ int main(int argc, char **argv)
 	}
 
 	free(inputline);
-	return (0);
+	return (last_status);
 }
