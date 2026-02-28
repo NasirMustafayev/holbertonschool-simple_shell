@@ -5,6 +5,25 @@
  * @argv: program arguments (for error messages)
  * Return: void
  */
+
+ /**
+ * print_env - prints all environment variables
+ *
+ * Return: void
+ */
+void print_env(void)
+{
+	int i;
+
+	if (!environ)
+		return;
+
+	for (i = 0; environ[i] != NULL; i++)
+	{
+		printf("%s\n", environ[i]);
+	}
+}
+
 void execute_cmd(char **tokens, char **argv)
 {
 	char *cmd_path;
@@ -20,6 +39,11 @@ void execute_cmd(char **tokens, char **argv)
 		exit(last_status);
 	}
 
+	if (strcmp(tokens[0], "env") == 0)
+	{
+		print_env();
+		return;
+	}
 	/* Find the command first */
 	cmd_path = find_in_path(tokens[0]);
 
