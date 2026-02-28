@@ -14,6 +14,12 @@ void execute_cmd(char **tokens, char **argv)
 	if (!tokens || !tokens[0])
 		return;
 
+	if (strcmp(tokens[0], "exit") == 0)
+	{
+		free(g_inputline);
+		exit(last_status);
+	}
+
 	/* Find the command first */
 	cmd_path = find_in_path(tokens[0]);
 

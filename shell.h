@@ -10,6 +10,7 @@
 
 extern char **environ;
 extern int last_status;
+extern char *g_inputline;
 
 void display_prompt(void);
 ssize_t read_line(char **lineptr, size_t *n);

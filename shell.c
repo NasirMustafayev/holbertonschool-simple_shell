@@ -7,6 +7,7 @@
  * Return: 0 on success
  */
 int last_status = 0;  /* Global variable to store last command's exit status */
+char *g_inputline = NULL;
 
 int main(int argc, char **argv)
 {
@@ -23,6 +24,8 @@ int main(int argc, char **argv)
 		display_prompt();
 
 		readline = read_line(&inputline, &lenght);
+		g_inputline = inputline;
+
 		if (readline == -1)
 			break;
 
